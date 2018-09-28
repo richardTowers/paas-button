@@ -1,4 +1,6 @@
 {% extends "../../layouts/govuk.njk" %}
+{%- from "components/tag/macro.njk" import govukTag -%}
+
 
 {% block pageTitle %}
   PaaS Button
@@ -7,8 +9,10 @@
 {% block content %}
   {{ super() }}
 
-  <h1>PaaS Button!</h1>
+  <h1 class="govuk-heading-xl">PaaS Button</h1>
 
-  <h2>PaaS Button!</h2>
+  <p class="govuk-body">
+  {{ govukTag({text: "todo"}) }} design this / make this work
+  </p>
 
 {% endblock %}

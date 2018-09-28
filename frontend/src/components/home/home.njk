@@ -1,0 +1,31 @@
+{% extends "../../layouts/govuk.njk" %}
+{% from "components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  PaaS Button
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+
+  <h1 class="govuk-heading-xl">PaaS Button</h1>
+
+  <p class="govuk-body">
+  The PaaS Button provides an easy way for users to deploy applications onto The Government PaaS.
+  </p>
+
+  <p class="govuk-body">
+  For example, you can use this button to deploy <a href="https://github.com/alphagov/govuk-prototype-kit">github.com/alphagov/govuk-prototype-kit</a>
+  </p>
+
+  {{ govukButton({
+    text: "☁️ Deploy to The Government PaaS",
+    href: "/deploy?url=github.com/alphagov/govuk-prototype-kit",
+    classes: "govuk-button--start"
+    }) }}
+
+  <p class="govuk-body">
+  To include a PaaS Button in your project, simply add the following HTML:
+  <pre><code>&lt;a href=&quot;todo-what-url&quot;&gt;&lt;img src=&quot;todo-what-src&quot; alt=&quot;todo-what-alt&quot;&gt;&lt;/a&gt;</code></pre>
+  </p>
+{% endblock %}
