@@ -1,0 +1,38 @@
+{
+  "name": "paas-button",
+  "version": "0.0.0",
+  "description": "GOV.UK PaaS Deployer Button",
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "echo 'No tests implemented'; exit 1",
+    "build": "npm run -s clean && webpack --config config/webpack.config.js",
+    "clean": "rm -rf dist/*",
+    "start": "npm run -s build && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardTowers/paas-button.git"
+  },
+  "author": "GOV.UK PaaS Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/richardTowers/paas-button/issues"
+  },
+  "homepage": "https://github.com/richardTowers/paas-button#readme",
+  "devDependencies": {
+    "@types/express": "4.16.0",
+    "expect": "^23.5.0",
+    "ts-loader": "4.4.2",
+    "typescript": "3.0.1",
+    "webpack": "4.16.5",
+    "webpack-cli": "3.1.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "govuk-frontend": "^2.1.0"
+  },
+  "engines": {
+    "node": "8.x.x",
+    "npm": ">=5.x.x"
+  }
+}
