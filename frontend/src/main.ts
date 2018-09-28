@@ -11,6 +11,13 @@ app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-fr
 app.use('/styles.css', express.static(path.join(__dirname, 'styles.css')))
 
 app.get('/', (_, res) => res.render('components/home/home.njk'))
-app.get('/deploy', (_, res) => res.render('components/deploy/deploy.njk'))
+app.get('/deploy', (req, res) => {
+  // TODO: extract this into a nice testable function
+  const urlToDeploy = req.query.url || req.headers['referer']
+  if (!urlToDeploy) {
+    res.redirect('/?error=no-url')
+  }
+  res.render('components/deploy/deploy.njk', { urlToDeploy })
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
