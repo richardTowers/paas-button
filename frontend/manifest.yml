@@ -1,0 +1,4 @@
+---
+name: paas-button
+buildpack: nodejs_buildpack
+command: node dist/main.js
