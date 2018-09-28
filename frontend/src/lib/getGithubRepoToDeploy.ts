@@ -5,7 +5,7 @@
  * @returns a string of the form "organisation/repository"
  */
 export default function getGithubRepoToDeploy(rawInput: string): {owner:string,repo:string}|null {
-  const pattern = /(?:https?:\/\/)?(?:github.com)?\/?([^\/]+)\/([^\/]+)/
+  const pattern = /^(?:https:\/\/)?github.com\/([^\/]+)\/([^\/]+)/
   const result = pattern.exec(rawInput)
   if (result === null) {
     return null

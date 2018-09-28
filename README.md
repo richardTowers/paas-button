@@ -12,7 +12,7 @@ Deploy to the PaaS using a beautiful button like this:
 TODO
 ----
 
-* [ ] Add tests
+* [x] Add tests
 * [ ] Make the user log in before they can deploy their app
 * [ ] Come up with a strawman design
 * [ ] Build a simple backend (shell out to `cf push` initially?)

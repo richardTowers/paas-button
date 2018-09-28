@@ -4,7 +4,7 @@
   "description": "GOV.UK PaaS Deployer Button",
   "main": "src/main.ts",
   "scripts": {
-    "test": "echo 'No tests implemented'; exit 1",
+    "test": "jest",
     "build": "npm run -s clean && npm run -s build:ts && npm run -s build:sass",
     "build:ts": "tsc",
     "build:sass": "node-sass --include-path node_modules/ src/styles.scss --output dist/",
@@ -23,9 +23,12 @@
   "homepage": "https://github.com/richardTowers/paas-button#readme",
   "devDependencies": {
     "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.2",
     "@types/nunjucks": "^3.1.0",
     "expect": "^23.5.0",
-    "node-sass": "^4.9.3"
+    "jest": "^23.6.0",
+    "node-sass": "^4.9.3",
+    "ts-jest": "^23.10.2"
   },
   "dependencies": {
     "@octokit/rest": "^15.12.1",
