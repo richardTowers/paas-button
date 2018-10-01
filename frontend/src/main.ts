@@ -1,11 +1,10 @@
 import express from 'express'
 import nunjucks from 'nunjucks'
-import path from 'path'
-import deploy from './components/deploy/deploy'
 import passport from 'passport'
 import { Strategy } from 'passport-oauth2'
 import CloudFoundryClient from './lib/cf'
 import cookieSession from 'cookie-session'
+import configureRoutes from './routes'
 
 function ensureEnvironmentVariable(name: string) {
   const value = process.env[name]
@@ -54,18 +53,10 @@ async function main() {
   passport.deserializeUser((accessToken: string, cb: (err: any, user?: {accessToken: string}) => void) => {
     cb(null, {accessToken})
   })
-  app.get('/auth/login', passport.authenticate('oauth2'))
-  app.get('/auth/login/callback', passport.authenticate('oauth2', {}), (_req, res) => res.redirect('/'))
 
-  app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/assets')))
-  app.use('/styles.css', express.static(path.join(__dirname, 'styles.css')))
+  configureRoutes(app)
 
-  app.get('/', (_, res) => res.render('components/home/home.njk'))
-  app.get('/deploy', deploy)
-
-  return app.listen(port, () => console.log(`Listening on port ${port}`))
+  app.listen(port, () => console.log(`Listening on port ${port}`))
 }
 
 main()
-  .then(() => console.log('Shutdown gracefully'))
-  .catch(err => console.error('Shutdown with an error', err))
