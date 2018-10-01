@@ -54,7 +54,7 @@ async function main() {
     cb(null, {accessToken})
   })
 
-  configureRoutes(app)
+  configureRoutes(app, apiEndpoint)
 
   app.listen(port, () => console.log(`Listening on port ${port}`))
 }

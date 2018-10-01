@@ -8,7 +8,7 @@ import configureYourApp from './components/configure-your-app/configure-your-app
 import home             from './components/home/home'
 import signIn           from './components/sign-in/sign-in'
 
-export default function configureRoutes(app: Express) {
+export default function configureRoutes(app: Express, apiEndpoint: string) {
   app.get('/auth/login', passport.authenticate('oauth2'))
   app.get('/auth/login/callback', passport.authenticate('oauth2', {}), (_req, res) => {
     // TODO might need to got to select a space first...
@@ -20,7 +20,7 @@ export default function configureRoutes(app: Express) {
 
   app.get('/', home)
   app.get('/button-callback', buttonCallback)
-  app.get('/choose-a-space', chooseASpace)
-  app.get('/configure-your-app', configureYourApp)
+  app.get('/choose-a-space', chooseASpace(apiEndpoint))
+  app.get('/configure-your-app', configureYourApp(apiEndpoint))
   app.get('/sign-in', signIn)
 }
