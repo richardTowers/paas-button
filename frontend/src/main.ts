@@ -7,31 +7,35 @@ import { Strategy } from 'passport-oauth2'
 import CloudFoundryClient from './lib/cf'
 import cookieSession from 'cookie-session'
 
+function ensureEnvironmentVariable(name: string) {
+  const value = process.env[name]
+  if (!value) {
+    throw new Error(`Environment variable ${name} must be set`)
+  }
+  return value
+}
 async function main() {
   const port = process.env['PORT'] || 8080
 
   const app = express()
   nunjucks.configure(['src/', 'node_modules/govuk-frontend'], {express: app})
 
-  // TODO error if this isn't set instead of defaulting it
-  const apiEndpoint = process.env['API_URL'] || 'https://api.towers.dev.cloudpipeline.digital'
+  const apiEndpoint = ensureEnvironmentVariable('API_URL')
   const cloudFoundryClient = new CloudFoundryClient({apiEndpoint})
   const info = await cloudFoundryClient.info()
   const authorizationEndpoint = info.authorization_endpoint
   const uaaEndpoint = info.token_endpoint
 
-  console.log(authorizationEndpoint, uaaEndpoint)
   const options = {
     authorizationURL: `${authorizationEndpoint}/oauth/authorize`,
     clientID:         'paas-button',
-    clientSecret:     process.env['PAAS_BUTTON_UAA_SECRET'] || 'TODO HANDLE THIS ERROR', // TODO
+    clientSecret:     ensureEnvironmentVariable('PAAS_BUTTON_UAA_SECRET'),
     tokenURL:         `${uaaEndpoint}/oauth/token`,
-    // callbackURL:      '', // TODO
   }
   app.use(cookieSession({
     name: 'paas-button-session',
-    keys: ['bananaman'], // TODO
-    secure: false, // TODO
+    keys: [ensureEnvironmentVariable('COOKIE_SECRET')],
+    secure: ensureEnvironmentVariable('COOKIE_INSECURE') !== 'true',
     httpOnly: true,
   }))
 
