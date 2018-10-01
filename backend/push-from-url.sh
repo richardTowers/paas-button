@@ -23,11 +23,9 @@ cd "$tmp_dir" || exit 1
 echo "Downloading $url_to_push"
 curl --fail --silent --location "$url_to_push" --output app-to-push.zip
 
-# Hack to force cf to create cf_home/config.json
-$CF auth foo bar
+# Hack to force cf to create ~/.cf/config.json
+$CF logout
 
-ruby -r json ~/.cf/config.json <<RUBY
-  puts "I am ruby"
-  puts JSON.parse(File.read(ARGV[0])).inspect
-RUBY
+./set-cf-access-token.rb "$auth_token"
+
 
