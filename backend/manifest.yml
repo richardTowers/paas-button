@@ -1,0 +1,7 @@
+---
+applications:
+- name: paas-button-backend
+  buildpack: binary_buildpack
+  instances: 0
+  no-route: true
+  health-check-type: process
