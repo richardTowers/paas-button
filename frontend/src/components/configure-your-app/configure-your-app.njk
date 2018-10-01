@@ -1,5 +1,6 @@
 {% extends "../../layouts/govuk.njk" %}
 {% from "components/button/macro.njk" import govukButton %}
+{% from "components/input/macro.njk" import govukInput %}
 
 {% block pageTitle %}
   PaaS Button
@@ -9,5 +10,29 @@
   {{ super() }}
 
   <h1 class="govuk-heading-xl">Configure your app</h1>
+
+
+  <form method="post" action="/deploy-your-app">
+    {{ govukInput({
+      label: {
+        text: "App name"
+      },
+      id: "app-name",
+      name: "app-name"
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Route"
+      },
+      hint: {
+        text: "Your app will be available on https://${route}.cloudapps.digital"
+      },
+      id: "app-name",
+      name: "app-name"
+    }) }}
+
+    {{ govukButton({ type: "submit", text: "Deploy to GOV.UK PaaS" }) }}
+  </form>
 
 {% endblock %}
