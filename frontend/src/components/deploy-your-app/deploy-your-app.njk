@@ -1,0 +1,16 @@
+{% extends "../../layouts/govuk.njk" %}
+{% from "components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  PaaS Button
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+
+  <h1 class="govuk-heading-xl">PaaS Button</h1>
+
+  <p class="govuk-body">
+  Your deployment is in progress...
+  </p>
+{% endblock %}
