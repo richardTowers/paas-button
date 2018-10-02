@@ -5,7 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "jest",
-    "build": "npm run -s clean && npm run -s build:ts && npm run -s build:sass",
+    "build": "npm run -s clean && npm run -s build:ts && npm run -s build:sass && cp src/*.gif dist/",
     "build:ts": "tsc",
     "build:sass": "node-sass --include-path node_modules/ src/styles.scss --output dist/",
     "clean": "rm -rf dist/*",

@@ -24,6 +24,7 @@ export default function configureRoutes(
 
   app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/assets')))
   app.use('/styles.css', express.static(path.join(__dirname, 'styles.css')))
+  app.use('/loading-spinner.gif', express.static(path.join(__dirname, 'loading-spinner.gif')))
 
   app.get('/', home)
   app.get('/button-callback', buttonCallback)

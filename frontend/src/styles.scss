@@ -1,3 +1,9 @@
 $govuk-global-styles: true;
 
 @import 'govuk-frontend/all';
+
+.loading-spinner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

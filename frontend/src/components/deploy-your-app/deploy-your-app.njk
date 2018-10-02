@@ -5,6 +5,10 @@
   PaaS Button
 {% endblock %}
 
+{% block head %}
+<meta http-equiv="refresh" content="5">
+{% endblock %}
+
 {% block content %}
   {{ super() }}
 
@@ -12,5 +16,7 @@
 
   <p class="govuk-body">
   Your deployment is in progress...
+
+  <img src="/loading-spinner.gif" class="loading-spinner" alt="Loading spinner...">
   </p>
 {% endblock %}
