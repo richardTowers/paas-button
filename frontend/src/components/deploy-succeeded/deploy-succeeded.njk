@@ -1,0 +1,33 @@
+{% extends "../../layouts/govuk.njk" %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% from "components/panel/macro.njk" import govukPanel %}
+
+{% block pageTitle %}
+  Deploy Succeeded - PaaS Button
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Application deployed",
+        html: "Your application is now live on GOV.UK PaaS"
+      }) }}
+
+      <h3 class="govuk-heading-m">What happens next</h3>
+
+      <p class="govuk-body">
+        Visit your application at <a href="https://paas-button-example.towers.dev.cloudpipelineapps.digital">https://paas-button-example.towers.dev.cloudpipelineapps.digital</a>
+      </p>
+      <p class="govuk-body">
+        Learn how to use the cloud foundry command line.
+      </p>
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+      </p>
+    </div>
+  </div>
+{% endblock %}

@@ -8,6 +8,8 @@ import configureYourApp from './components/configure-your-app/configure-your-app
 import home             from './components/home/home'
 import signIn           from './components/sign-in/sign-in'
 import DeployYourApp    from './components/deploy-your-app/deploy-your-app'
+import deploySucceeded  from './components/deploy-succeeded/deploy-succeeded'
+import deployFailed     from './components/deploy-failed/deploy-failed';
 
 export default function configureRoutes(
     app: Express,
@@ -31,6 +33,8 @@ export default function configureRoutes(
   app.get('/choose-a-space', chooseASpace(apiEndpoint))
   app.get('/configure-your-app', configureYourApp(apiEndpoint))
   app.get('/sign-in', signIn)
+  app.get('/deploy-succeeded', deploySucceeded)
+  app.get('/deploy-failed', deployFailed)
 
   const deployYourApp = new DeployYourApp(
     serviceUserUsername, 

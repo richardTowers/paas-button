@@ -261,9 +261,20 @@ export default class CloudFoundryClient {
     return user.entity.organization_roles.includes(role);
   }
 
-  public async runTask(appGUID: string, command: string): Promise<string> {
+  public async runTask(appGUID: string, command: string): Promise<cf.ITask> {
     const response = await this.request('post', `/v3/apps/${appGUID}/tasks`, {command})
-    return response.data.state
+    return {
+      state: response.data.state,
+      guid: response.data.guid,
+    }
+  }
+
+  public async getTask(taskGUID: string): Promise<cf.ITask> {
+    const response = await this.request('get', `/v3/tasks/${taskGUID}/`)
+    return {
+      state: response.data.state,
+      guid: response.data.guid,
+    }
   }
 }
 

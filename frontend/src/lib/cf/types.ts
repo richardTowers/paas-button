@@ -336,3 +336,8 @@ export interface IUserServices {
   };
   readonly metadata: IMetadata;
 }
+
+export interface ITask {
+  readonly state: 'RUNNING'|'SUCCEEDED'|'FAILED';
+  readonly guid: string;
+}
