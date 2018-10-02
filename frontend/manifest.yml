@@ -1,4 +1,15 @@
 ---
-name: paas-button
-buildpack: nodejs_buildpack
-command: node dist/main.js
+applications:
+- name: paas-button-frontend
+  buildpack: nodejs_buildpack
+  command: node dist/main.js
+  routes:
+  - route: paas-button.towers.dev.cloudpipeline.digital
+  env:
+    API_URL: ((API_URL))
+    PAAS_BUTTON_UAA_SECRET: ((PAAS_BUTTON_UAA_SECRET))
+    COOKIE_SECRET: ((COOKIE_SECRET))
+    COOKIE_INSECURE: ((COOKIE_INSECURE))
+    CF_SERVICE_USER_USERNAME: ((CF_SERVICE_USER_USERNAME))
+    CF_SERVICE_USER_PASSWORD: ((CF_SERVICE_USER_PASSWORD))
+    PAAS_BUTTON_BACKEND_APP_GUID: ((PAAS_BUTTON_BACKEND_APP_GUID))
