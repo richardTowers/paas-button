@@ -181,7 +181,7 @@ export async function authenticate(endpoint: string, clientCredentials: IClientC
   return response.data.access_token;
 }
 
-export async function authenticateUser(endpoint: string, userCredentials: IUserCredentials) {
+export async function authenticateUser(endpoint: string, userCredentials: IUserCredentials): Promise<string> {
   /* istanbul ignore next */
   if (!userCredentials.username) {
     throw new TypeError('UAAClient: authenticateUser: username is required');

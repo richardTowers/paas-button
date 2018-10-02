@@ -47,14 +47,21 @@ async function main() {
   )
   app.use(passport.initialize())
   app.use(passport.session())
-  passport.serializeUser((user: {accessToken: string}, cb: (err: any, id?: string) => void) => {
-    cb(null, user.accessToken)
+  passport.serializeUser((user: {accessToken: string, refreshToken: string}, cb: (err: any, id?: string) => void) => {
+    cb(null, JSON.stringify({accessToken: user.accessToken, refreshToken: user.refreshToken}))
   })
-  passport.deserializeUser((accessToken: string, cb: (err: any, user?: {accessToken: string}) => void) => {
-    cb(null, {accessToken})
+  passport.deserializeUser((serializedUser: string, cb: (err: any, user?: {accessToken: string, refreshToken: string}) => void) => {
+    const user = JSON.parse(serializedUser)
+    cb(null, user)
   })
 
-  configureRoutes(app, apiEndpoint)
+  configureRoutes(
+    app,
+    ensureEnvironmentVariable('CF_SERVICE_USER_USERNAME'),
+    ensureEnvironmentVariable('CF_SERVICE_USER_PASSWORD'),
+    apiEndpoint,
+    ensureEnvironmentVariable('PAAS_BUTTON_BACKEND_APP_GUID'),
+  )
 
   app.listen(port, () => console.log(`Listening on port ${port}`))
 }

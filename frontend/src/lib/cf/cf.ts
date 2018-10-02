@@ -260,6 +260,11 @@ export default class CloudFoundryClient {
 
     return user.entity.organization_roles.includes(role);
   }
+
+  public async runTask(appGUID: string, command: string): Promise<string> {
+    const response = await this.request('post', `/v3/apps/${appGUID}/tasks`, {command})
+    return response.data.state
+  }
 }
 
 async function request(endpoint: string, method: httpMethod, url: string, opts?: any): Promise<AxiosResponse> {
