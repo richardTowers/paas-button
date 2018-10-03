@@ -41,9 +41,11 @@ def set_access_token(access_token, refresh_token)
   end
 end
 
-def push_app(zip_path, org_name, space_name, app_name, args)
-  raise 'cf target failed' unless system "#{$cf} target  -o #{org_name} -s #{space_name}"
-  raise 'cf push failed' unless system "#{$cf} push '#{app_name}' -p '#{zip_path}' #{args.map{|a|"'#{a}'"}.join(' ')}"
+def push_app(app_path, org_name, space_name, app_name, args)
+  Dir.chdir app_path do
+    raise 'cf target failed' unless system "#{$cf} target  -o #{org_name} -s #{space_name}"
+    raise 'cf push failed' unless system "#{$cf} push '#{app_name}' #{args.map{|a|"'#{a}'"}.join(' ')}"
+  end
 end
 
 def main()
