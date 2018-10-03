@@ -3,14 +3,15 @@
 {% from "components/input/macro.njk" import govukInput %}
 
 {% block pageTitle %}
-  PaaS Button
+  Deploy {{githubRepo.owner}}/{{githubRepo.repo}} | PaaS Button
 {% endblock %}
 
 {% block content %}
   {{ super() }}
 
-  <h1 class="govuk-heading-xl">Configure your app</h1>
+  <h1 class="govuk-heading-xl">Deploy <code>{{githubRepo.owner}}/{{githubRepo.repo}}</code> to GOV.UK PaaS</h1>
 
+  <h2 class="govuk-heading-l">Configure your app</h2>
 
   <form method="post" action="/deploy-your-app">
     {{ govukInput({

@@ -2,7 +2,7 @@
 {% from "components/button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
-  PaaS Button
+  Deploy {{githubRepo.owner}}/{{githubRepo.repo}} | PaaS Button
 {% endblock %}
 
 {% block head %}
@@ -12,7 +12,7 @@
 {% block content %}
   {{ super() }}
 
-  <h1 class="govuk-heading-xl">PaaS Button</h1>
+  <h1 class="govuk-heading-xl">Deploy <code>{{githubRepo.owner}}/{{githubRepo.repo}}</code> to GOV.UK PaaS</h1>
 
   <p class="govuk-body">
   Your deployment is in progress...

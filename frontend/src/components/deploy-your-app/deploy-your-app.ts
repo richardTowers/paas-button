@@ -12,6 +12,8 @@ export default class DeployYourApp {
   public async deployYourAppStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
     if (!req.session) { throw new Error('Session required') }
     if (!req.user) { throw new Error('User required') }
+    const githubRepo = req.session['githubRepo']
+    if (!githubRepo) { throw new Error('Expected a github repo') }
     const cloudFoundryClient = await this.getCloudFoundryClient()
 
     const taskGUID: string = req.session['taskGUID']
@@ -22,7 +24,7 @@ export default class DeployYourApp {
     switch(task.state) {
       case 'RUNNING':
         // TODO get task logs
-        return res.render('components/deploy-your-app/deploy-your-app.njk')
+        return res.render('components/deploy-your-app/deploy-your-app.njk', {githubRepo})
       case 'SUCCEEDED':
         return res.redirect('/deploy-succeeded')
       case 'FAILED':
