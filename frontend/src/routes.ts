@@ -24,7 +24,7 @@ function handleError(routeHandler: (req: Request, res: Response, next: NextFunct
 }
 function handleRejection(routeHandler: (req: Request, res: Response, next: NextFunction) => Promise<any>): (req: Request, res: Response, next: NextFunction) => void {
   return (req: Request, res: Response, next: NextFunction) => {
-    routeHandler(req, res, next).then(() => next()).catch(err => {
+    routeHandler(req, res, next).catch(err => {
       console.log('Rejection caught by router', err)
       res.redirect('/error')
     })
