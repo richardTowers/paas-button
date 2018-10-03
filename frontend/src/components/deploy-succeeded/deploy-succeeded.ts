@@ -12,6 +12,6 @@ export default function deploySucceeded(req: Request, res: Response, next: NextF
   const appName = githubRepo.repo.replace(/_/g, '-')
 
   const url = `https://${appName}.towers.dev.cloudpipelineapps.digital`
-  res.render('components/deploy-succeeded/deploy-succeeded.njk', {url})
+  res.render('components/deploy-succeeded/deploy-succeeded.njk', {url, hasSession: !!req.user})
 }
 

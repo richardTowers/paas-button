@@ -17,7 +17,7 @@ async function main() {
   const port = process.env['PORT'] || 8080
 
   const app = express()
-  nunjucks.configure(['src/', 'node_modules/govuk-frontend'], {express: app})
+  nunjucks.configure(['src/', 'node_modules/govuk-frontend'], {autoescape: true, noCache: true, express: app})
 
   const apiEndpoint = ensureEnvironmentVariable('API_URL')
   const cloudFoundryClient = new CloudFoundryClient({apiEndpoint})

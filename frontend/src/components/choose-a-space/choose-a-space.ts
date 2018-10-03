@@ -20,6 +20,6 @@ export default class ChooseASpace {
         spaces: await cloudFoundryClient.spaces(o.metadata.guid).then(ss => ss.map(s => ({spaceName: s.entity.name, spaceGuid: s.metadata.guid})))
       })))
       console.log(orgsAndSpaces)
-      res.render('components/choose-a-space/choose-a-space.njk', {githubRepo})
+      res.render('components/choose-a-space/choose-a-space.njk', {githubRepo, hasSession: !!req.user})
     }
 }

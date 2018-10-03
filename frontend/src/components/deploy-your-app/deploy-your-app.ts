@@ -24,7 +24,7 @@ export default class DeployYourApp {
     switch(task.state) {
       case 'RUNNING':
         // TODO get task logs
-        return res.render('components/deploy-your-app/deploy-your-app.njk', {githubRepo})
+        return res.render('components/deploy-your-app/deploy-your-app.njk', {githubRepo, hasSession: !!req.user})
       case 'SUCCEEDED':
         return res.redirect('/deploy-succeeded')
       case 'FAILED':

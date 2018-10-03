@@ -20,5 +20,5 @@ export default async function configureYourApp(req: Request, res: Response, _nex
   if (manifest) {
     // TOOD extract any env vars from manifest
   }
-  res.render('components/configure-your-app/configure-your-app.njk', {githubRepo})
+  res.render('components/configure-your-app/configure-your-app.njk', {githubRepo, hasSession: !!req.user})
 }
