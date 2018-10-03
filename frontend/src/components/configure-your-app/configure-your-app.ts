@@ -5,6 +5,7 @@ const githubClient = new octokit()
 
 export default async function configureYourApp(req: Request, res: Response, _next: NextFunction): Promise<any> {
   try {
+    if (!req.session) { throw new Error('Session required') }
     const githubRepo: {owner: string, repo: string} = req.session && req.session['githubRepo']
     if (!githubRepo) {
       // TODO we can do better than that
@@ -19,9 +20,10 @@ export default async function configureYourApp(req: Request, res: Response, _nex
       console.log(`Couldn't find a manifest.yml for repo ${githubRepo.owner}/${githubRepo.repo}, probably because there isn't one`, err.code)
     }
     if (manifest) {
-      // TOOD extract any env vars from manifest
+      // TODO extract any env vars from manifest
     }
-    res.render('components/configure-your-app/configure-your-app.njk', {githubRepo, hasSession: !!req.user})
+    const errors = 'validation-error' in req.query ? req.session['validationErrors'] : null
+    res.render('components/configure-your-app/configure-your-app.njk', {errors, githubRepo, hasSession: !!req.user})
   } catch (err) {
     console.error('configureYourApp', err)
     res.redirect('/error')

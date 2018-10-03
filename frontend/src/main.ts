@@ -5,6 +5,7 @@ import { Strategy } from 'passport-oauth2'
 import CloudFoundryClient from './lib/cf'
 import cookieSession from 'cookie-session'
 import configureRoutes from './routes'
+import bodyParser from 'body-parser'
 
 function ensureEnvironmentVariable(name: string) {
   const value = process.env[name]
@@ -17,6 +18,7 @@ async function main() {
   const port = process.env['PORT'] || 8080
 
   const app = express()
+  app.use(bodyParser.urlencoded({extended: false}))
   nunjucks.configure(['src/', 'node_modules/govuk-frontend'], {autoescape: true, noCache: true, express: app})
 
   const apiEndpoint = ensureEnvironmentVariable('API_URL')

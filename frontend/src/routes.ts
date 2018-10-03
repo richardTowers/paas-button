@@ -47,7 +47,7 @@ export default function configureRoutes(
     apiEndpoint,
     paasButtonBackendGuid,
   )
-  app.post('/deploy-your-app', deployYourApp.deployYourAppSubmit.bind(deployYourApp))
+  app.post('/deploy-your-app', deployYourApp.deployYourAppSubmitMiddleware, deployYourApp.deployYourAppSubmit.bind(deployYourApp))
   app.get('/deploy-your-app', deployYourApp.deployYourAppStatus.bind(deployYourApp))
   app.get('/sign-out', (req, res) => {
     req.session = undefined

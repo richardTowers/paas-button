@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import CloudFoundryClient from '../../lib/cf/cf'
 import { authenticateUser } from '../../lib/uaa'
+import { check, validationResult } from 'express-validator/check'
 
 export default class DeployYourApp {
   constructor(
@@ -39,6 +40,10 @@ export default class DeployYourApp {
     }
   }
 
+  public readonly deployYourAppSubmitMiddleware = [
+    check('app-name').isLength({min: 4}).matches(/[a-z0-9][a-z0-9]+/),
+    check('route').isLength({min: 4}).matches(/[a-z0-9][a-z0-9]+/)
+  ]
   public async deployYourAppSubmit(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       if (!req.session) { throw new Error('Session required') }
@@ -46,6 +51,12 @@ export default class DeployYourApp {
 
       const githubRepo: {owner: string, repo: string} = req.session['githubRepo']
       if (!githubRepo) { throw new Error('Session should contain a github repo') }
+
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        req.session['validationErrors'] = errors.mapped()
+        return res.redirect('/configure-your-app?validation-error=true')
+      }
 
       const cloudFoundryClient = await this.getCloudFoundryClient()
 
