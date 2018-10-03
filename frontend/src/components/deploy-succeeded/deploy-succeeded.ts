@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-export default async function deploySucceeded(req: Request, res: Response, next: NextFunction): Promise<any> {
+export default function deploySucceeded(req: Request, res: Response, next: NextFunction): void {
   if (!req.session) { throw new Error('Session required') }
   if (!req.user) { throw new Error('User required') }
 

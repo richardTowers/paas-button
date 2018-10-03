@@ -1,0 +1,20 @@
+{% extends "../../layouts/govuk.njk" %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  Error | PaaS Button
+{% endblock %}
+
+{% block content %}
+  {{ super() }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Sorry, there is a problem with the service</h1>
+      <p class="govuk-body">Try again later.</p>
+      <p class="govuk-body">
+        <a class="govuk-link" href="https://www.cloud.service.gov.uk/support/help-using-paas">Contact the GOV.UK PaaS team</a> if you need help deploying your service.
+      </p>
+    </div>
+  </div>
+{% endblock %}
