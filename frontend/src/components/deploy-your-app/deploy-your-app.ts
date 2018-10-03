@@ -41,24 +41,21 @@ export default class DeployYourApp {
   }
 
   public readonly deployYourAppSubmitMiddleware = [
-    check('app-name').isLength({min: 4}).matches(/[a-z0-9][a-z0-9]+/),
-    check('route').isLength({min: 4}).matches(/[a-z0-9][a-z0-9]+/)
+    check('app-name').isLength({min: 4}).matches(/^[a-z0-9][a-z0-9\-]+$/),
+    check('route').isLength({min: 4}).matches(/^[a-z0-9][a-z0-9\-]+$/)
   ]
   public async deployYourAppSubmit(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       if (!req.session) { throw new Error('Session required') }
       if (!req.user) { throw new Error('User required') }
 
-      const githubRepo: {owner: string, repo: string} = req.session['githubRepo']
-      if (!githubRepo) { throw new Error('Session should contain a github repo') }
-
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
         req.session['validationErrors'] = errors.mapped()
         return res.redirect('/configure-your-app?validation-error=true')
       }
-
-      const cloudFoundryClient = await this.getCloudFoundryClient()
+      const githubRepo: {owner: string, repo: string} = req.session['githubRepo']
+      if (!githubRepo) { throw new Error('Session should contain a github repo') }
 
       // TODO: get this URL from the github API instead of templating it:
       const zipFileToDeploy = `https://github.com/${githubRepo.owner}/${githubRepo.repo}/archive/master.zip`
@@ -70,6 +67,7 @@ export default class DeployYourApp {
       // TODO: don't hardcode org, space
       const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button '${appName}' '${zipFileToDeploy}' --hostname '${route}'`
 
+      const cloudFoundryClient = await this.getCloudFoundryClient()
       const result  = await cloudFoundryClient.runTask(this.paasButtonBackendGuid, command)
       req.session['taskGUID'] = result.guid
       return res.redirect('/deploy-your-app')
