@@ -45,4 +45,9 @@ export default function configureRoutes(
   )
   app.post('/deploy-your-app', deployYourApp.deployYourAppSubmit.bind(deployYourApp))
   app.get('/deploy-your-app', deployYourApp.deployYourAppStatus.bind(deployYourApp))
+  app.get('/logout', (req, res) => {
+    req.session = undefined
+    // TODO don't hardcode this
+    res.redirect('https://login.towers.dev.cloudpipeline.digital/logout.do')
+  })
 }
