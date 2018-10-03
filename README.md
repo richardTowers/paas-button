@@ -18,6 +18,7 @@ TODO
 * [x] Build a simple backend (shell out to `cf push` initially?)
 * [x] Stop hardcoding path-to-zip
 * [ ] Logout link
+* [ ] Handle errors properly
 * [ ] Stop hardcoding app name and route
 * [x] Fork the prototype kit so it can be used for demos
 * [ ] Make the prototype kit link to edit pages on github
