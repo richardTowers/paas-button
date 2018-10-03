@@ -8,11 +8,9 @@ export default function deploySucceeded(req: Request, res: Response, next: NextF
     const githubRepo: {owner: string, repo: string} = req.session['githubRepo']
     if (!githubRepo) { throw new Error('Session should contain a github repo') }
 
-    // TODO: This won't be correct if the user specifies a name
-    // App names can't contain underscores
-    const appName = githubRepo.repo.replace(/_/g, '-')
-
-    const url = `https://${appName}.towers.dev.cloudpipelineapps.digital`
+    const route = req.session['route']
+    // TODO don't hardcode the domain
+    const url = `https://${route}.towers.dev.cloudpipelineapps.digital`
     res.render('components/deploy-succeeded/deploy-succeeded.njk', {url, hasSession: !!req.user})
   } catch (err) {
     console.error('deploySucceeded', err)

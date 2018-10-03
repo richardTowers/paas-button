@@ -65,9 +65,10 @@ export default class DeployYourApp {
 
       const appName = req.body['app-name']
       const route = req.body['route']
+      req.session['route'] = route
 
       // TODO: don't hardcode org, space
-      const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button '${appName}' '${zipFileToDeploy}' --route-path '${route}'`
+      const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button '${appName}' '${zipFileToDeploy}' --hostname '${route}'`
 
       const result  = await cloudFoundryClient.runTask(this.paasButtonBackendGuid, command)
       req.session['taskGUID'] = result.guid
