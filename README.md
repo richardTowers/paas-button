@@ -16,7 +16,8 @@ TODO
 * [x] Make the user log in before they can deploy their app
 * [x] Come up with a strawman design
 * [x] Build a simple backend (shell out to `cf push` initially?)
-* [ ] Stop hardcoding app name, route and path-to-zip
+* [x] Stop hardcoding path-to-zip
+* [ ] Stop hardcoding app name and route
 * [ ] Fork the prototype kit so it can be used for demos
 * [ ] Handle org and space properly
 * [ ] Handle any other TODOs you can find

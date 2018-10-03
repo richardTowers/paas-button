@@ -35,10 +35,17 @@ export default class DeployYourApp {
   public async deployYourAppSubmit(req: Request, res: Response, next: NextFunction): Promise<any> {
     if (!req.session) { throw new Error('Session required') }
     if (!req.user) { throw new Error('User required') }
+
+    const githubRepo: {owner: string, repo: string} = req.session['githubRepo']
+    if (!githubRepo) { throw new Error('Session should contain a github repo') }
+
     const cloudFoundryClient = await this.getCloudFoundryClient()
 
-    // TODO: don't hardcode these things!
-    const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button paas-button-example https://github.com/richardTowers/paas-button-example/archive/master.zip`
+    // TODO: get this URL from the github API instead of templating it:
+    const zipFileToDeploy = `https://github.com/${githubRepo.owner}/${githubRepo.repo}/archive/master.zip`
+
+    // TODO: don't hardcode org, space, and app name. Set route.
+    const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button ${githubRepo.repo} ${zipFileToDeploy}`
 
     const result  = await cloudFoundryClient.runTask(this.paasButtonBackendGuid, command)
     req.session['taskGUID'] = result.guid
