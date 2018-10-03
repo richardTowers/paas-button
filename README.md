@@ -18,8 +18,8 @@ TODO
 * [x] Build a simple backend (shell out to `cf push` initially?)
 * [x] Stop hardcoding path-to-zip
 * [x] Logout link
-* [ ] Form validation
-* [ ] Stop hardcoding app name and route
+* [x] Form validation
+* [x] Stop hardcoding app name and route
 * [ ] CSRF protection
 * [x] Handle errors properly
 * [x] Fork the prototype kit so it can be used for demos

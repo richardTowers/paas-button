@@ -63,11 +63,11 @@ export default class DeployYourApp {
       // TODO: get this URL from the github API instead of templating it:
       const zipFileToDeploy = `https://github.com/${githubRepo.owner}/${githubRepo.repo}/archive/master.zip`
 
-      // app names can't contain underscores
-      const appName = githubRepo.repo.replace(/_/g, '-')
+      const appName = req.body['app-name']
+      const route = req.body['route']
 
-      // TODO: don't hardcode org, space, and app name. Set route.
-      const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button ${appName} ${zipFileToDeploy}`
+      // TODO: don't hardcode org, space
+      const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button '${appName}' '${zipFileToDeploy}' --route-path '${route}'`
 
       const result  = await cloudFoundryClient.runTask(this.paasButtonBackendGuid, command)
       req.session['taskGUID'] = result.guid
