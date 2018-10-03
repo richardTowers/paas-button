@@ -8,7 +8,10 @@ export default async function deploySucceeded(req: Request, res: Response, next:
   if (!githubRepo) { throw new Error('Session should contain a github repo') }
 
   // TODO: This won't be correct if the user specifies a name
-  const url = `https://${githubRepo.repo}.towers.dev.cloudpipelineapps.digital`
+  // App names can't contain underscores
+  const appName = githubRepo.repo.replace('_', '')
+
+  const url = `https://${appName}.towers.dev.cloudpipelineapps.digital`
   res.render('components/deploy-succeeded/deploy-succeeded.njk', {url})
 }
 
