@@ -24,9 +24,9 @@ TODO
 * [x] Handle errors properly
 * [x] Fork the prototype kit so it can be used for demos
 * [ ] Make the prototype kit link to edit pages on github
-* [ ] Handle org and space properly
 * [ ] Handle any other TODOs you can find
 * [ ] Stream logs
 * [ ] Do some user research
+* [ ] Handle org and space properly
 * [ ] Iterate your way to bliss
 
