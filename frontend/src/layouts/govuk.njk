@@ -42,7 +42,7 @@
         serviceName: 'PaaS Button',
         serviceUrl: 'https://paas-button.towers.dev.cloudpipeline.digital/',
         navigation: [
-          {text: ('Sign out' if hasSession else 'Sign in'), href: ('/sign-out' if hasSession else '/sign-in')}
+          {text: 'Sign out', href: '/sign-out'} if hasSession
         ]
       }) }}
     {% endblock %}
