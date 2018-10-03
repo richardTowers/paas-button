@@ -45,7 +45,7 @@ export default class DeployYourApp {
     const zipFileToDeploy = `https://github.com/${githubRepo.owner}/${githubRepo.repo}/archive/master.zip`
 
     // app names can't contain underscores
-    const appName = githubRepo.repo.replace('_', '-')
+    const appName = githubRepo.repo.replace(/_/g, '-')
 
     // TODO: don't hardcode org, space, and app name. Set route.
     const command = `./push-from-url.rb '${req.user['accessToken']}' '${req.user['refreshToken']}' admin paas-button ${appName} ${zipFileToDeploy}`
