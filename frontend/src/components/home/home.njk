@@ -8,7 +8,7 @@
 {% block content %}
   {{ super() }}
 
-  <h1 class="govuk-heading-xl">PaaS Button</h1>
+  <h1 class="govuk-heading-xl">GOV.UK PaaS Button</h1>
 
   <p class="govuk-body">
   The PaaS Button provides an easy way for users to deploy applications onto GOV.UK PaaS.
@@ -25,7 +25,7 @@
     }) }}
 
   <p class="govuk-body">
-  To include a PaaS Button in your project, simply add the following HTML:
-  <pre><code>&lt;a href=&quot;todo-what-url&quot;&gt;&lt;img src=&quot;todo-what-src&quot; alt=&quot;todo-what-alt&quot;&gt;&lt;/a&gt;</code></pre>
+  To include a PaaS Button in your GitHub project, simply add the following Markdown to your README:
+  <div><code>[![Deploy to GOV.UK PaaS](https://paas-button.towers.dev.cloudpipeline.digital/paas-button.png)](https://paas-button.towers.dev.cloudpipeline.digital/button-callback)</code></div>
   </p>
 {% endblock %}
