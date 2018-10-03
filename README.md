@@ -13,9 +13,16 @@ TODO
 ----
 
 * [x] Add tests
-* [ ] Make the user log in before they can deploy their app
-* [ ] Come up with a strawman design
-* [ ] Build a simple backend (shell out to `cf push` initially?)
+* [x] Make the user log in before they can deploy their app
+* [x] Come up with a strawman design
+* [x] Build a simple backend (shell out to `cf push` initially?)
+* [ ] Stop hardcoding app name, route and path-to-zip
+* [ ] Fork the prototype kit so it can be used for demos
+* [ ] Handle org and space properly
+* [ ] Handle any other TODOs you can find
+* [ ] Form validation
+* [ ] CSRF protection
+* [ ] Stream logs
 * [ ] Do some user research
 * [ ] Iterate your way to bliss
 
