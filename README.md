@@ -20,13 +20,13 @@ TODO
 * [x] Logout link
 * [x] Form validation
 * [x] Stop hardcoding app name and route
-* [ ] CSRF protection
 * [x] Handle errors properly
 * [x] Fork the prototype kit so it can be used for demos
 * [ ] Make the prototype kit link to edit pages on github
 * [ ] Handle any other TODOs you can find
-* [ ] Stream logs
 * [ ] Do some user research
+* [ ] CSRF protection
 * [ ] Handle org and space properly
+* [ ] Stream logs
 * [ ] Iterate your way to bliss
 
