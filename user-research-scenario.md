@@ -16,10 +16,10 @@ and said something about it being "super easy to deploy now".
 Your task
 ---------
 
-1) Using the instructions in the prototype kit's README
-   ([https://github.com/richardTowers/govuk_prototype_kit#readme](https://github.com/richardTowers/govuk_prototype_kit#readme))
+1) Fork the prototype kit - [https://github.com/richardTowers/govuk_prototype_kit](https://github.com/richardTowers/govuk_prototype_kit)
+2) Using the instructions in the prototype kit's README `https://github.com/$YOUR_GITHUB_USER/govuk_prototype_kit#readme`
    deploy the prototype kit so it's available on the internet
-2) Edit the home page of the prototype kit so that it says the following and redeploy it
+3) Edit the home page of the prototype kit so that it says the following and redeploy it
 
 
 Apply for a Barking Permit
@@ -29,5 +29,4 @@ You're eligible for a barking permit if you have four legs, floppy or springy ea
 
 Applying takes about five minutes, you may need an animal with opposable thumbs to help you.
 
-[Get Started >](#/)
 
