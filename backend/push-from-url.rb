@@ -41,10 +41,12 @@ def set_access_token(access_token, refresh_token)
   end
 end
 
-def push_app(app_path, org_name, space_name, app_name, args)
+def push_app(app_path, org_name, space_name, app_name, github_url, args)
   Dir.chdir app_path do
     raise 'cf target failed' unless system "#{$cf} target  -o #{org_name} -s #{space_name}"
-    raise 'cf push failed' unless system "#{$cf} push '#{app_name}' #{args.map{|a|"'#{a}'"}.join(' ')}"
+    raise 'cf push failed' unless system "#{$cf} push '#{app_name}' --no-start #{args.map{|a|"'#{a}'"}.join(' ')}"
+    raise 'cf set-env failed' unless system "#{$cf} set-env '#{app_name}' PAAS_BUTTON_GITHUB_URL '#{github_url}'"
+    raise 'cf start failed' unless system "#{$cf} start '#{app_name}'"
   end
 end
 
@@ -60,9 +62,10 @@ def main()
       org_name = ARGV[2]
       space_name = ARGV[3]
       app_name = ARGV[4]
+      github_url = ARGV[5].sub('/archive/master.zip', '')
       app_path = download_application_zip ARGV[5]
       puts tmpdir + '/' + app_path
-      push_app(app_path, org_name, space_name, app_name, ARGV[6..-1])
+      push_app(app_path, org_name, space_name, app_name, github_url, ARGV[6..-1])
     end
   end
 end
