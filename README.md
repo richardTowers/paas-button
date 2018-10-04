@@ -22,7 +22,7 @@ TODO
 * [x] Stop hardcoding app name and route
 * [x] Handle errors properly
 * [x] Fork the prototype kit so it can be used for demos
-* [ ] Make the prototype kit link to edit pages on github
+* [x] Make the prototype kit link to edit pages on github
 * [ ] Handle any other TODOs you can find
 * [ ] Do some user research
 * [ ] CSRF protection
