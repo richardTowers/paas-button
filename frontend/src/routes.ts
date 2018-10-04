@@ -17,6 +17,7 @@ export default function configureRoutes(
     serviceUserUsername: string,
     serviceUserPassword: string,
     apiEndpoint: string,
+    authorizationEndpoint: string,
     paasButtonBackendGuid: string) {
 
   app.get('/auth/login', passport.authenticate('oauth2'))
@@ -51,8 +52,7 @@ export default function configureRoutes(
   app.get('/deploy-your-app', deployYourApp.deployYourAppStatus.bind(deployYourApp))
   app.get('/sign-out', (req, res) => {
     req.session = undefined
-    // TODO don't hardcode this
-    res.redirect('https://login.towers.dev.cloudpipeline.digital/logout.do')
+    res.redirect(`${authorizationEndpoint}/logout.do`)
   })
   app.get('/error', error)
 }

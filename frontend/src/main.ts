@@ -62,6 +62,7 @@ async function main() {
     ensureEnvironmentVariable('CF_SERVICE_USER_USERNAME'),
     ensureEnvironmentVariable('CF_SERVICE_USER_PASSWORD'),
     apiEndpoint,
+    authorizationEndpoint,
     ensureEnvironmentVariable('PAAS_BUTTON_BACKEND_APP_GUID'),
   )
 
