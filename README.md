@@ -41,6 +41,12 @@ The current backend implementation uses the `cf` command line interface to
 interact with Cloud Foundry. Sadly the CLI wasn't really built for this use case,
 so the backend has to hack around with the CLI's config file before it will work.
 
+User research
+-------------
+
+The first iteration of the PaaS button has been through several rounds of user research.
+The research is available in the PaaS team drive at `User research > 05. Research by topic > Paas Button`.
+
 TODO
 ----
 
