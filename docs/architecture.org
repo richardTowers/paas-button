@@ -1,0 +1,39 @@
+#+BEGIN_SRC plantuml :file images/architecture.png
+skinparam shadowing false
+skinparam componentStyle uml2
+
+actor endUser
+
+package "PaaS Button Frontend" {
+  [nodejs Web Server]
+  actor serviceUser
+}
+package "PaaS Button Backend" {
+  [Ruby Script]
+} 
+
+package "Cloud Foundry" {
+  [OAuth server]
+  [Cloud Controller]
+}
+ 
+cloud "GitHub" {
+  [alphagov/prototype-kit]
+}
+
+endUser <--> [nodejs Web Server]
+
+endUser <--> [OAuth server]
+
+[nodejs Web Server] --> [Cloud Controller]: POST /v3/tasks
+[Cloud Controller] --> [Ruby Script]: run
+
+[Ruby Script] --> [alphagov/prototype-kit]: Download zip
+[Ruby Script] --> [Cloud Controller]: cf push
+
+[nodejs Web Server] --> [Cloud Controller]: Poll for task completion
+#+END_SRC
+
+#+RESULTS:
+[[file:images/architecture.png]]
+

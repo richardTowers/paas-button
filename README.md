@@ -9,6 +9,13 @@ Deploy to the PaaS using a beautiful button like this:
 :tada: :tada: :tada:
 :tada: :tada: :tada:
 
+Architecture
+------------
+
+![architecture diagram](docs/images/architecture.png)
+
+(see [docs/architecture.org](docs/architecture.org))
+
 TODO
 ----
 
@@ -23,10 +30,11 @@ TODO
 * [x] Handle errors properly
 * [x] Fork the prototype kit so it can be used for demos
 * [x] Make the prototype kit link to edit pages on github
-* [ ] Handle any other TODOs you can find
-* [ ] Do some user research
+* [x] Handle any other TODOs you can find
+* [x] Do some user research
 * [ ] CSRF protection
 * [ ] Handle org and space properly
 * [ ] Stream logs
 * [ ] Iterate your way to bliss
+
 
